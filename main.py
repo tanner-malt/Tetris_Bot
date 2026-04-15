@@ -21,13 +21,53 @@ print(S_piece)
 print(T_piece)
 print(Z_piece)
 '''
+class piece:
+    def __init__(self, piece_type: str):
+        if piece_type == 'I':
+            self.piece = I_piece
+        elif piece_type == 'J':
+            self.piece = J_piece
+        elif piece_type == 'L':
+            self.piece = L_piece
+        elif piece_type == 'O':
+            self.piece = O_piece
+        elif piece_type == 'S':
+            self.piece = S_piece
+        elif piece_type == 'T':
+            self.piece = T_piece
+        elif piece_type == 'Z':
+            self.piece = Z_piece
+        else:
+            raise ValueError('Invalid piece type')
+        position = (0,3)
+        
 
-
-def rotator(piece: np.ndarray):
-    '''
-    this function will take a piece and rotate it 90
-    '''
-    return np.rot90(piece)
+    def rotator(piece: np.ndarray):
+        '''
+        this function will take a piece and rotate it 90
+        '''
+        return np.rot90(piece)
+    
+    def move_left(piece: np.ndarray, position: tuple):
+        '''
+        this function will take a piece and move it left by one unit
+        '''
+        row, col = position
+        return (row, col-1)
+    
+    def move_right(piece: np.ndarray, position: tuple):
+        '''
+        this function will take a piece and move it right by one unit
+        '''
+        row, col = position
+        return (row, col+1)
+    
+    def move_down(piece: np.ndarray, position: tuple):
+        '''
+        this function will take a piece and move it down by one unit
+        '''
+        row, col = position
+        return (row+1, col)
 
 
 def collision_check(board: np.ndarray, piece: np.ndarray, position: tuple = (0,3)):
@@ -55,5 +95,3 @@ def collision_check(board: np.ndarray, piece: np.ndarray, position: tuple = (0,3
     if overlap_mask.any():
         return True
     return False
-
-collision_check(board,I_piece)
