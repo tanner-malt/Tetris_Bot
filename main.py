@@ -22,3 +22,11 @@ print(O_piece)
 print(S_piece)
 print(T_piece)
 print(Z_piece)
+
+def rotator(piece: np.ndarray):
+    '''
+    this function will take a piece and rotate it 90
+    '''
+    return np.rot90(piece)
+
+print(rotator(I_piece))
